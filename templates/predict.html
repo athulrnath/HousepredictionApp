@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .predict-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .predict-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .logout-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: green;
+        }
+        .error {
+            margin-top: 20px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logout Link -->
+    <div class="logout-link">
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger">Logout</a>
+    </div>
+
+    <!-- Prediction Container -->
+    <div class="predict-container">
+        <h2>House Price Prediction</h2>
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        <form action="{{ url_for('predict') }}" method="POST">
+            <div class="form-group">
+                <label for="room_bed">Number of Bedrooms:</label>
+                <input type="number" class="form-control" name="room_bed" id="room_bed" required>
+            </div>
+            <div class="form-group">
+                <label for="room_bath">Number of Bathrooms:</label>
+                <input type="number" class="form-control" name="room_bath" id="room_bath" required>
+            </div>
+            <div class="form-group">
+                <label for="living_measure">Living Area (sqft):</label>
+                <input type="number" class="form-control" name="living_measure" id="living_measure" required>
+            </div>
+            <div class="form-group">
+                <label for="lot_measure">Lot Size (sqft):</label>
+                <input type="number" class="form-control" name="lot_measure" id="lot_measure" required>
+            </div>
+            <div class="form-group">
+                <label for="quality">Quality Score (1-10):</label>
+                <input type="number" class="form-control" name="quality" id="quality" min="1" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="zipcode">Zipcode:</label>
+                <input type="number" class="form-control" name="zipcode" id="zipcode" required>
+            </div>
+            <div class="form-group">
+                <label for="yr_renovated">Year Renovated (0 if not renovated):</label>
+                <input type="number" class="form-control" name="yr_renovated" id="yr_renovated" required>
+            </div>
+            <div class="form-group">
+                <label for="basement">Does the house have a basement? (1 for Yes, 0 for No):</label>
+                <input type="number" class="form-control" name="basement" id="basement" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="furnished">Is the house furnished? (1 for Yes, 0 for No):</label>
+                <input type="number" class="form-control" name="furnished" id="furnished" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="yr_built">Year Built:</label>
+                <input type="number" class="form-control" name="yr_built" id="yr_built" required>
+            </div>
+            <div class="form-group">
+                <label for="condition">Condition Score (1-5):</label>
+                <input type="number" class="form-control" name="condition" id="condition" min="1" max="5" required>
+            </div>
+            <div class="form-group">
+                <label for="total_area">Total Area (sqft):</label>
+                <input type="number" class="form-control" name="total_area" id="total_area" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                Predicted Price: {{ result }}
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

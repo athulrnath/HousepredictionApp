@@ -1,0 +1,7 @@
+Flask
+pymongo
+bcrypt
+Flask-Cors
+joblib
+pandas
+scikit-learn

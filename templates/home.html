@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .jumbotron {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+        }
+        .features-section {
+            padding: 4rem 0;
+            background-color: #f1f1f1;
+        }
+        .feature {
+            margin-bottom: 2rem;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">House Price Predictor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('predict') }}">Predict</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to House Price Predictor</h1>
+        <p class="lead">Predict the value of your house with just a few clicks.</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}" role="button">Get Started</a>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container features-section">
+        <div class="row">
+            <div class="col-md-4 feature">
+                <h3>Easy to Use</h3>
+                <p>Our platform is user-friendly and easy to navigate. Simply input your house details and get an instant prediction.</p>
+            </div>
+            <div class="col-md-4 feature">
+                <h3>Accurate Predictions</h3>
+                <p>Powered by advanced machine learning models, our predictions are highly accurate and reliable.</p>
+            </div>
+            <div class="col-md-4 feature">
+                <h3>Free to Use</h3>
+                <p>No hidden costs or subscriptions. Use our tool for free to get the most accurate house price predictions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 House Price Predictor. All Rights Reserved.</p>
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
